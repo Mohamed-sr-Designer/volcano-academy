@@ -1,0 +1,283 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+  VOLCANO — Path To Mastery
+  Palette derived exclusively from the two logo colors:
+    • Burgundy / Oxblood  #5B1E24  →  hsl(354 50% 24%)
+    • Warm Cream / Ivory  #F4EFEA  →  hsl(30 31% 94%)
+  Every token below is a tint or shade along those two hues — no foreign colors.
+*/
+
+@layer base {
+  :root {
+    /* ---- Brand scale (shared across themes) ---- */
+    --wine-50: 352 40% 96%;
+    --wine-100: 352 42% 92%;
+    --wine-200: 352 44% 84%;
+    --wine-300: 353 44% 72%;
+    --wine-400: 353 46% 56%;
+    --wine-500: 354 48% 42%;
+    --wine-600: 354 50% 34%;
+    --wine-700: 354 50% 28%;
+    --wine-800: 354 50% 24%; /* brand burgundy #5B1E24 */
+    --wine-900: 354 52% 17%;
+    --wine-950: 355 55% 9%;
+
+    --cream: 30 31% 94%; /* brand cream #F4EFEA */
+    --cream-soft: 34 44% 97%;
+    --cream-deep: 28 24% 89%;
+
+    /* ---- Semantic tokens · LIGHT ---- */
+    --background: 34 42% 97%;
+    --foreground: 354 44% 14%;
+
+    --card: 40 52% 99%;
+    --card-foreground: 354 44% 14%;
+
+    --popover: 40 52% 99%;
+    --popover-foreground: 354 44% 14%;
+
+    --primary: 354 50% 24%;
+    --primary-foreground: 34 44% 97%;
+
+    --secondary: 30 30% 92%;
+    --secondary-foreground: 354 50% 24%;
+
+    --muted: 32 26% 91%;
+    --muted-foreground: 354 14% 40%;
+
+    --accent: 352 42% 91%;
+    --accent-foreground: 354 50% 24%;
+
+    --destructive: 2 68% 42%;
+    --destructive-foreground: 34 44% 97%;
+
+    --border: 32 22% 85%;
+    --input: 32 22% 83%;
+    --ring: 354 50% 30%;
+
+    --shadow-color: 354 40% 20%;
+
+    /* Logo knockout colour — matches the surface the mark sits on */
+    --logo-contrast: hsl(34 42% 97%);
+
+    --radius: 1rem;
+  }
+
+  .dark {
+    --background: 355 40% 6%;
+    --foreground: 34 36% 92%;
+
+    --card: 355 34% 9%;
+    --card-foreground: 34 36% 92%;
+
+    --popover: 355 38% 8%;
+    --popover-foreground: 34 36% 92%;
+
+    --primary: 352 56% 54%;
+    --primary-foreground: 355 45% 7%;
+
+    --secondary: 354 28% 15%;
+    --secondary-foreground: 34 36% 92%;
+
+    --muted: 354 22% 14%;
+    --muted-foreground: 33 18% 66%;
+
+    --accent: 354 38% 20%;
+    --accent-foreground: 34 40% 94%;
+
+    --destructive: 2 60% 46%;
+    --destructive-foreground: 34 36% 92%;
+
+    --border: 354 24% 17%;
+    --input: 354 22% 19%;
+    --ring: 352 56% 52%;
+
+    --shadow-color: 355 70% 2%;
+
+    --logo-contrast: hsl(355 40% 6%);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-feature-settings: "ss01", "cv01", "cv11";
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: hsl(var(--primary) / 0.9);
+    color: hsl(var(--primary-foreground));
+  }
+
+  h1, h2, h3, h4, h5 {
+    @apply font-display tracking-tight;
+    text-wrap: balance;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 11px;
+    height: 11px;
+  }
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--background));
+  }
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--primary) / 0.28);
+    border-radius: 999px;
+    border: 3px solid hsl(var(--background));
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--primary) / 0.5);
+  }
+
+  :focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+}
+
+@layer components {
+  /* Fluid section rhythm */
+  .section {
+    @apply py-24 sm:py-28 lg:py-36;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.28em] text-primary/70;
+  }
+
+  /* Glass surface — used sparingly (navbar, floating chips) */
+  .glass {
+    background: hsl(var(--background) / 0.62);
+    backdrop-filter: blur(20px) saturate(160%);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
+    border: 1px solid hsl(var(--border) / 0.7);
+  }
+
+  .glass-card {
+    background: hsl(var(--card) / 0.55);
+    backdrop-filter: blur(16px) saturate(150%);
+    -webkit-backdrop-filter: blur(16px) saturate(150%);
+    border: 1px solid hsl(var(--border) / 0.6);
+  }
+
+  /* Hairline gradient border helper */
+  .ring-hairline {
+    box-shadow: inset 0 0 0 1px hsl(var(--border) / 0.9);
+  }
+
+  .link-underline {
+    background-image: linear-gradient(hsl(var(--primary)), hsl(var(--primary)));
+    background-size: 0% 1.5px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .link-underline:hover {
+    background-size: 100% 1.5px;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .text-pretty {
+    text-wrap: pretty;
+  }
+
+  .text-gradient {
+    background: linear-gradient(
+      120deg,
+      hsl(var(--foreground)) 0%,
+      hsl(var(--primary)) 55%,
+      hsl(var(--wine-400)) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+
+  .text-gradient-warm {
+    background: linear-gradient(
+      120deg,
+      hsl(var(--wine-400)),
+      hsl(var(--primary)) 60%,
+      hsl(var(--wine-700))
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+
+  /* Grain / noise overlay */
+  .noise::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: theme("backgroundImage.grain");
+    background-size: 180px;
+    opacity: 0.035;
+    mix-blend-mode: overlay;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .mask-fade-b {
+    -webkit-mask-image: linear-gradient(to bottom, black 55%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 55%, transparent 100%);
+  }
+  .mask-fade-x {
+    -webkit-mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+  }
+
+  .bg-radial-glow {
+    background: radial-gradient(
+      60% 60% at 50% 0%,
+      hsl(var(--primary) / 0.16) 0%,
+      transparent 70%
+    );
+  }
+
+  .paused {
+    animation-play-state: paused;
+  }
+
+  .perspective {
+    perspective: 1200px;
+  }
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+}

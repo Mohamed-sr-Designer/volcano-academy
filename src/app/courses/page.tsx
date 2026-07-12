@@ -8,14 +8,16 @@ import { CourseGrid } from "@/components/sections/course-grid";
 import { Faq } from "@/components/shared/faq";
 import { CtaBand } from "@/components/sections/cta-band";
 import { Button } from "@/components/ui/button";
-import { faqs } from "@/lib/data";
+import { Reveal } from "@/components/shared/reveal";
+import { faqs, learningNote } from "@/lib/data";
 import { staggerContainer, fadeUp } from "@/lib/motion";
+import { Compass } from "lucide-react";
 import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Courses",
   description:
-    "Piano, guitar, violin, drums, vocals, music theory and kids music — seven disciplines taught one-to-one by conservatory-trained instructors at Volcano.",
+    "Piano, guitar, violin, drums, vocals and kids music — taught one-to-one by conservatory-trained instructors at Volcano.",
 };
 
 const steps = [
@@ -52,7 +54,7 @@ export default function CoursesPage() {
             <br className="hidden sm:block" /> instrument
           </>
         }
-        description="Seven disciplines, one standard of excellence. Every course is taught one-to-one and tailored to your level, taste and ambition."
+        description="Six disciplines, one standard of excellence. Every course is taught one-to-one and tailored to your level, taste and ambition."
       >
         <Button asChild size="lg">
           <Link href="/booking">Book a lesson</Link>
@@ -62,6 +64,18 @@ export default function CoursesPage() {
       <section className="section pt-4">
         <div className="container">
           <CourseGrid />
+
+          <Reveal className="mt-14">
+            <div className="mx-auto flex max-w-3xl items-start gap-4 rounded-2xl border border-border bg-secondary/40 p-6 sm:items-center">
+              <span className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-primary/10 text-primary">
+                <Compass className="h-5 w-5" strokeWidth={1.7} />
+              </span>
+              <p className="text-sm leading-relaxed text-muted-foreground">
+                <span className="font-semibold text-foreground">Every course is self-paced.</span>{" "}
+                {learningNote}
+              </p>
+            </div>
+          </Reveal>
         </div>
       </section>
 

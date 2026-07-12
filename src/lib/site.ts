@@ -7,10 +7,10 @@ export const siteConfig = {
   url: "https://volcano-academy.com",
   locale: "en",
   email: "hello@volcano-academy.com",
-  phone: "+20 100 123 4567",
-  phoneHref: "tel:+201001234567",
-  whatsapp: "+20 100 123 4567",
-  whatsappHref: "https://wa.me/201001234567",
+  phone: "+20 11 5443 0545",
+  phoneHref: "tel:+201154430545",
+  whatsapp: "+20 11 5443 0545",
+  whatsappHref: "https://wa.me/201154430545",
   address: "24 Nile Corniche, Maadi — Cairo, Egypt",
   mapQuery: "Maadi, Cairo, Egypt",
   hours: [
@@ -31,13 +31,11 @@ export type NavItem = {
   description?: string;
 };
 
+// Trimmed top navigation — the full set of pages lives in the footer.
 export const mainNav: NavItem[] = [
   { title: "Home", href: "/" },
-  { title: "About", href: "/about" },
   { title: "Courses", href: "/courses" },
   { title: "Founder", href: "/founder" },
-  { title: "Instructors", href: "/instructors" },
-  { title: "Gallery", href: "/gallery" },
   { title: "Pricing", href: "/pricing" },
   { title: "Contact", href: "/contact" },
 ];

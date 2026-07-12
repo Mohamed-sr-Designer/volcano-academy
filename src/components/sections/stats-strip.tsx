@@ -14,7 +14,7 @@ export function StatsStrip() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.4 }}
-          className="grid grid-cols-2 divide-x divide-y divide-border/70 sm:grid-cols-4 sm:divide-y-0"
+          className="grid grid-cols-3 divide-x divide-border/70"
         >
           {stats.map((s) => (
             <motion.div

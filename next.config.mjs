@@ -20,8 +20,9 @@ const nextConfig = {
   ...(isGhPages
     ? {
         output: "export",
+        // basePath alone prefixes all /_next assets (incl. next/image). Adding
+        // assetPrefix with a trailing slash caused a double slash — omit it.
         basePath: `/${repo}`,
-        assetPrefix: `/${repo}/`,
         trailingSlash: true,
       }
     : {}),

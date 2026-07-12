@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { Clock, Signal, ArrowUpRight, Check } from "lucide-react";
 
 import type { Course } from "@/lib/data";
@@ -12,15 +13,29 @@ import { Badge } from "@/components/ui/badge";
 export function CourseCard({ course, index = 0 }: { course: Course; index?: number }) {
   return (
     <TiltCard className="group h-full" max={6}>
-      <div className="flex h-full flex-col overflow-hidden rounded-3xl border border-border bg-card shadow-soft transition-all duration-500 ease-out-expo group-hover:-translate-y-1.5 group-hover:border-primary/25 group-hover:shadow-lift">
-        <div className="relative overflow-hidden">
-          <CourseArt
-            icon={course.icon}
-            gradient={course.gradient}
-            accent={course.accent}
-            seed={index + 1}
-            className="aspect-[16/10] w-full transition-transform duration-700 ease-out-expo group-hover:scale-[1.04]"
-          />
+      <Link
+        href={`/courses/${course.slug}`}
+        className="flex h-full flex-col overflow-hidden rounded-3xl border border-border bg-card shadow-soft transition-all duration-500 ease-out-expo group-hover:-translate-y-1.5 group-hover:border-primary/25 group-hover:shadow-lift"
+      >
+        <div className="relative aspect-[16/10] overflow-hidden">
+          {course.image ? (
+            <Image
+              src={course.image}
+              alt={`${course.title} at Volcano`}
+              fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              className="object-cover transition-transform duration-700 ease-out-expo group-hover:scale-[1.05]"
+            />
+          ) : (
+            <CourseArt
+              icon={course.icon}
+              gradient={course.gradient}
+              accent={course.accent}
+              seed={index + 1}
+              className="absolute inset-0 h-full w-full transition-transform duration-700 ease-out-expo group-hover:scale-[1.04]"
+            />
+          )}
+          <div className="absolute inset-0 bg-gradient-to-t from-wine-950/50 via-transparent to-transparent" />
           <div className="absolute bottom-4 right-4">
             <Badge variant="cream" className="shadow-soft">
               {course.level}
@@ -70,15 +85,12 @@ export function CourseCard({ course, index = 0 }: { course: Course; index?: numb
             </span>
           </div>
 
-          <Link
-            href={{ pathname: "/booking", query: { instrument: course.title } }}
-            className="mt-5 inline-flex items-center justify-between rounded-full bg-secondary px-5 py-3 text-sm font-medium text-foreground transition-all duration-300 hover:bg-primary hover:text-primary-foreground"
-          >
-            Book Now
+          <span className="mt-5 inline-flex items-center justify-between rounded-full bg-secondary px-5 py-3 text-sm font-medium text-foreground transition-all duration-300 group-hover:bg-primary group-hover:text-primary-foreground">
+            Explore Course
             <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-          </Link>
+          </span>
         </div>
-      </div>
+      </Link>
     </TiltCard>
   );
 }

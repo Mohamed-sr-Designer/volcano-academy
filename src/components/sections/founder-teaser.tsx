@@ -1,12 +1,13 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowRight, Quote } from "lucide-react";
 
 import { fadeUp, staggerContainer } from "@/lib/motion";
-import { AvatarArt } from "@/components/shared/avatar-art";
 import { Button } from "@/components/ui/button";
+import founderImg from "@/assets/founder.jpg";
 
 export function FounderTeaser() {
   return (
@@ -21,12 +22,16 @@ export function FounderTeaser() {
             className="relative mx-auto w-full max-w-md"
           >
             <div className="absolute -inset-4 -z-10 rounded-[2rem] bg-primary/10 blur-2xl" />
-            <AvatarArt
-              initials="L"
-              hue={354}
-              rounded="rounded-[2rem]"
-              className="aspect-[4/5] w-full shadow-lift ring-1 ring-border"
-            />
+            <div className="relative aspect-[4/5] w-full overflow-hidden rounded-[2rem] shadow-lift ring-1 ring-border">
+              <Image
+                src={founderImg}
+                alt="Louloua — Founder & Music Instructor at Volcano"
+                fill
+                sizes="(max-width: 1024px) 100vw, 448px"
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-wine-950/35 via-transparent to-transparent" />
+            </div>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -67,7 +72,7 @@ export function FounderTeaser() {
               variants={fadeUp}
               className="mt-6 text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg"
             >
-              A Teaching Assistant at the Higher Institute of Music (Helwan),
+              A Teaching Assistant at the Higher Institute of Music (Ain Shams),
               Louloua founded Volcano to create a modern, inspiring and
               professional environment where students of all ages master music
               with confidence and creativity.

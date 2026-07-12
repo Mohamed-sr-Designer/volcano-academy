@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { GraduationCap, Award, Music4, Quote, ArrowRight } from "lucide-react";
 
 import { SectionHeading } from "@/components/shared/section-heading";
 import { Reveal } from "@/components/shared/reveal";
 import { Timeline } from "@/components/shared/timeline";
-import { AvatarArt } from "@/components/shared/avatar-art";
 import { FloatingNotes } from "@/components/shared/floating-notes";
+import founderImg from "@/assets/founder.jpg";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { socialLinks } from "@/components/shared/social-icons";
@@ -15,13 +16,13 @@ import { CtaBand } from "@/components/sections/cta-band";
 export const metadata: Metadata = {
   title: "Founder — Louloua",
   description:
-    "Meet Louloua — Founder & Music Instructor at Volcano, and a Teaching Assistant at the Higher Institute of Music (Helwan).",
+    "Meet Louloua — Founder & Music Instructor at Volcano, and a Teaching Assistant at the Higher Institute of Music (Ain Shams).",
 };
 
 const journey = [
   {
     label: "Education",
-    title: "Higher Institute of Music (Helwan)",
+    title: "Higher Institute of Music (Ain Shams)",
     description:
       "Formal conservatory training in performance and music theory, building the rigorous foundation that shapes Volcano's teaching philosophy.",
   },
@@ -46,7 +47,7 @@ const journey = [
 ];
 
 const credentials = [
-  { icon: GraduationCap, label: "Conservatory trained", value: "Helwan" },
+  { icon: GraduationCap, label: "Conservatory trained", value: "Ain Shams" },
   { icon: Music4, label: "Specialisation", value: "Piano · Theory" },
   { icon: Award, label: "Founder", value: "Volcano Academy" },
 ];
@@ -63,12 +64,17 @@ export default function FounderPage() {
             <Reveal>
               <div className="relative mx-auto w-full max-w-sm">
                 <div className="absolute -inset-5 -z-10 rounded-[2.5rem] bg-primary/12 blur-3xl" />
-                <AvatarArt
-                  initials="L"
-                  hue={354}
-                  rounded="rounded-[2.5rem]"
-                  className="aspect-[4/5] w-full shadow-lift ring-1 ring-border"
-                />
+                <div className="relative aspect-[4/5] w-full overflow-hidden rounded-[2.5rem] shadow-lift ring-1 ring-border">
+                  <Image
+                    src={founderImg}
+                    alt="Louloua — Founder & Music Instructor at Volcano"
+                    fill
+                    priority
+                    sizes="(max-width: 1024px) 100vw, 400px"
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-wine-950/40 via-transparent to-transparent" />
+                </div>
                 <div className="glass-card absolute -bottom-6 left-1/2 flex -translate-x-1/2 items-center gap-3 rounded-2xl px-5 py-3 shadow-lift">
                   <span className="grid h-9 w-9 place-items-center rounded-full bg-primary/10 text-primary">
                     <Music4 className="h-4 w-4" />
@@ -94,7 +100,7 @@ export default function FounderPage() {
                 </p>
                 <p className="mt-6 max-w-xl text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg">
                   Louloua is a Teaching Assistant at the Higher Institute of Music
-                  (Helwan) and founded Volcano Academy to provide a modern,
+                  (Ain Shams) and founded Volcano Academy to provide a modern,
                   inspiring and professional learning environment where students of
                   all ages can master music with confidence and creativity.
                 </p>

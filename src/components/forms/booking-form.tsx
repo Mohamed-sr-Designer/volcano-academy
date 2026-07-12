@@ -21,6 +21,7 @@ import {
 
 import { cn } from "@/lib/utils";
 import { instrumentOptions, instructors } from "@/lib/data";
+import { whatsappLink } from "@/lib/whatsapp";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
@@ -124,10 +125,33 @@ export function BookingForm() {
 
   const onSubmit = async (values: BookingValues) => {
     setSubmitting(true);
-    // Simulate a network request — swap for a real endpoint when ready.
-    await new Promise((r) => setTimeout(r, 1400));
-    // eslint-disable-next-line no-console
-    console.log("Booking submitted:", values);
+
+    // Compose the booking as a WhatsApp message to the academy.
+    const message = [
+      "🎵 New Lesson Booking — Volcano Academy",
+      "",
+      `• Student: ${values.studentName}`,
+      values.parentName ? `• Parent: ${values.parentName}` : "",
+      `• Age: ${values.age}`,
+      `• Email: ${values.email}`,
+      `• Phone: ${values.phone}`,
+      `• WhatsApp: ${values.whatsapp}`,
+      `• Instrument: ${values.instrument}`,
+      `• Preferred instructor: ${values.instructor}`,
+      `• Level: ${values.level}`,
+      `• Format: ${values.format}`,
+      `• Preferred days: ${values.days.join(", ")}`,
+      `• Preferred time: ${values.time}`,
+      values.notes ? `• Notes: ${values.notes}` : "",
+    ]
+      .filter(Boolean)
+      .join("\n");
+
+    if (typeof window !== "undefined") {
+      window.open(whatsappLink(message), "_blank", "noopener,noreferrer");
+    }
+
+    await new Promise((r) => setTimeout(r, 900));
     setSubmitting(false);
     setDone(true);
   };
@@ -143,8 +167,8 @@ export function BookingForm() {
     const v = getValues();
     return (
       <SubmitSuccess
-        title="Your lesson request is in!"
-        message="Thank you — our team will reach out on WhatsApp within 24 hours to confirm your first lesson. Get ready to play."
+        title="Your lesson request is ready!"
+        message="We've opened WhatsApp with your booking details — just press send to reach us. Our team will confirm your first lesson within 24 hours. Get ready to play."
         summary={[
           { label: "Student", value: v.studentName },
           { label: "Instrument", value: v.instrument },

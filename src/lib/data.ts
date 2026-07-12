@@ -1,11 +1,11 @@
 import type { LucideIcon } from "lucide-react";
+import type { StaticImageData } from "next/image";
 import {
   Piano,
   Guitar,
   Music2,
   Drum,
   Mic2,
-  BookOpenText,
   Blocks,
   GraduationCap,
   HeartHandshake,
@@ -15,6 +15,11 @@ import {
   Users,
   Award,
 } from "lucide-react";
+
+import pianoImg from "@/assets/courses/piano.jpg";
+import guitarImg from "@/assets/courses/guitar.jpg";
+import violinImg from "@/assets/courses/violin.jpg";
+import drumsImg from "@/assets/courses/drums.jpg";
 
 /* ------------------------------------------------------------------ */
 /*  COURSES                                                            */
@@ -28,6 +33,8 @@ export type Course = {
   icon: LucideIcon;
   tagline: string;
   description: string;
+  overview: string; // longer intro for the course page
+  curriculum: string[]; // what you'll learn
   duration: string;
   level: Level;
   price: number;
@@ -35,7 +42,16 @@ export type Course = {
   highlights: string[];
   gradient: string; // tailwind gradient classes, brand-only hues
   accent: string; // hsl var-based accent for art
+  image?: StaticImageData; // real photograph where available
 };
+
+/**
+ * Every course is self-paced: progress depends on how quickly each student
+ * absorbs the material. On average, students reach confident, independent
+ * playing in about six months — and can keep growing on their own from there.
+ */
+export const learningNote =
+  "Every path adapts to how quickly you absorb each concept — there is no rigid timetable. On average, students reach confident, independent playing in about six months, from where they can keep growing entirely on their own.";
 
 export const courses: Course[] = [
   {
@@ -45,13 +61,24 @@ export const courses: Course[] = [
     tagline: "The complete instrument",
     description:
       "From first chords to concert repertoire — develop touch, theory and expression on acoustic and digital pianos with a structured, personalised path.",
+    overview:
+      "The piano is the most complete instrument there is — a full orchestra beneath ten fingers. From your very first lesson you'll build touch, tone and reading, moving from simple melodies to rich, expressive pieces at a pace that is entirely your own.",
+    curriculum: [
+      "Posture, hand shape & healthy technique",
+      "Note reading & rhythm from scratch",
+      "Scales, chords & the basics of harmony",
+      "Classical & contemporary repertoire",
+      "Pedalling, dynamics & expression",
+      "Preparing a piece for performance",
+    ],
     duration: "60 min · weekly",
     level: "All Levels",
-    price: 1800,
+    price: 4100,
     priceUnit: "/ month",
     highlights: ["Classical & contemporary", "Sight-reading mastery", "Recital preparation"],
     gradient: "from-wine-800 via-wine-700 to-wine-950",
     accent: "var(--wine-400)",
+    image: pianoImg,
   },
   {
     slug: "guitar",
@@ -60,13 +87,24 @@ export const courses: Course[] = [
     tagline: "Acoustic · electric · classical",
     description:
       "Build fluid technique, rhythm and improvisation across styles. Learn the songs you love while mastering the fundamentals that make you unstoppable.",
+    overview:
+      "Acoustic, electric or classical — the guitar meets you wherever your taste lives. You'll develop clean technique, a strong sense of rhythm and the freedom to play the songs you love, all while understanding exactly why they work.",
+    curriculum: [
+      "Fretting, picking & strumming technique",
+      "Open chords through to barre chords",
+      "Rhythm, timing & strumming patterns",
+      "Scales & the basics of improvisation",
+      "Reading tabs & chord charts",
+      "Your first full songs, start to finish",
+    ],
     duration: "60 min · weekly",
     level: "All Levels",
-    price: 1600,
+    price: 3900,
     priceUnit: "/ month",
     highlights: ["Fingerstyle & plectrum", "Chord theory", "Live performance"],
     gradient: "from-wine-700 via-wine-800 to-wine-950",
     accent: "var(--wine-300)",
+    image: guitarImg,
   },
   {
     slug: "violin",
@@ -75,28 +113,24 @@ export const courses: Course[] = [
     tagline: "Strings with soul",
     description:
       "Intonation, bowing and tone production taught the conservatory way — with an approach that keeps every lesson musical, patient and inspiring.",
+    overview:
+      "Few instruments sing like the violin. Taught the conservatory way — but never coldly — you'll build intonation, a beautiful bowing arm and the tone control that turns individual notes into real, moving music.",
+    curriculum: [
+      "Holding the violin & bow with ease",
+      "Producing a clean, warm tone",
+      "Intonation & precise finger placement",
+      "Bowing techniques & articulation",
+      "Reading music & rhythm",
+      "Playing in tune alongside others",
+    ],
     duration: "45–60 min · weekly",
     level: "Beginner → Advanced",
-    price: 1900,
+    price: 3700,
     priceUnit: "/ month",
     highlights: ["Suzuki-informed method", "Orchestral technique", "Ensemble play"],
     gradient: "from-wine-600 via-wine-800 to-wine-900",
     accent: "var(--wine-300)",
-  },
-  {
-    slug: "drums",
-    title: "Drums",
-    icon: Drum,
-    tagline: "Feel the pulse",
-    description:
-      "Groove, coordination and independence on a full acoustic kit. Develop timing that bands fight over and the confidence to drive any room.",
-    duration: "60 min · weekly",
-    level: "All Levels",
-    price: 1700,
-    priceUnit: "/ month",
-    highlights: ["Rudiments to fills", "Genre grooves", "Play-along sessions"],
-    gradient: "from-wine-800 via-wine-900 to-wine-950",
-    accent: "var(--wine-400)",
+    image: violinImg,
   },
   {
     slug: "vocals",
@@ -105,28 +139,49 @@ export const courses: Course[] = [
     tagline: "Find your true voice",
     description:
       "Breath, range and stage presence with a healthy technique. Whether pop, jazz or classical, learn to sing with power, control and emotion.",
+    overview:
+      "Your voice is the one instrument you carry everywhere. With a healthy, sustainable technique you'll expand your range, discover your true tone and learn to perform with genuine confidence — in whatever style you love.",
+    curriculum: [
+      "Breath support & healthy technique",
+      "Pitch, ear training & control",
+      "Extending your range safely",
+      "Tone, resonance & personal style",
+      "Microphone & stage presence",
+      "Interpreting and owning a song",
+    ],
     duration: "45–60 min · weekly",
     level: "All Levels",
-    price: 1750,
+    price: 3300,
     priceUnit: "/ month",
     highlights: ["Breath & support", "Range extension", "Mic & stagecraft"],
     gradient: "from-wine-700 via-wine-600 to-wine-900",
     accent: "var(--wine-300)",
   },
   {
-    slug: "music-theory",
-    title: "Music Theory",
-    icon: BookOpenText,
-    tagline: "The language of music",
+    slug: "drums",
+    title: "Drums",
+    icon: Drum,
+    tagline: "Feel the pulse",
     description:
-      "Harmony, ear-training and composition that unlock every other skill. Understand what you play — and start writing music of your own.",
-    duration: "45 min · weekly",
-    level: "Beginner → Advanced",
-    price: 1200,
+      "Groove, coordination and independence on a full kit. Develop timing that bands fight over and the confidence to drive any room.",
+    overview:
+      "Rhythm is the heartbeat of every band. On a full kit you'll develop timing, coordination and the feel that makes a room move — from your very first steady groove to fills that turn heads.",
+    curriculum: [
+      "Grip, posture & the essential rudiments",
+      "Reading rhythm & counting time",
+      "Rock, pop & world grooves",
+      "Coordination & limb independence",
+      "Fills, dynamics & musicality",
+      "Playing along to real tracks",
+    ],
+    duration: "60 min · weekly",
+    level: "All Levels",
+    price: 2100,
     priceUnit: "/ month",
-    highlights: ["Harmony & analysis", "Ear training", "Composition basics"],
-    gradient: "from-wine-900 via-wine-800 to-wine-950",
+    highlights: ["Rudiments to fills", "Genre grooves", "Play-along sessions"],
+    gradient: "from-wine-800 via-wine-900 to-wine-950",
     accent: "var(--wine-400)",
+    image: drumsImg,
   },
   {
     slug: "kids-music",
@@ -135,15 +190,29 @@ export const courses: Course[] = [
     tagline: "Ages 4 – 9",
     description:
       "A joyful first encounter with rhythm, pitch and play. Games, movement and songs build musical instinct and a lifelong love of learning.",
+    overview:
+      "A child's first encounter with music should feel like play — and here it does. Through games, movement and song, young learners build rhythm, pitch and confidence, discovering a love of music that lasts a lifetime.",
+    curriculum: [
+      "Rhythm & movement games",
+      "Singing & pitch matching",
+      "Musical listening & memory",
+      "A gentle introduction to an instrument",
+      "Playing & sharing in a group",
+      "Confidence, focus & pure fun",
+    ],
     duration: "40 min · weekly",
     level: "Kids",
-    price: 1300,
+    price: 2200,
     priceUnit: "/ month",
     highlights: ["Playful & musical", "Rhythm games", "Group & solo"],
     gradient: "from-wine-500 via-wine-700 to-wine-900",
     accent: "var(--wine-200)",
   },
 ];
+
+export function getCourse(slug: string) {
+  return courses.find((c) => c.slug === slug);
+}
 
 export const instrumentOptions = courses.map((c) => c.title);
 
@@ -219,7 +288,7 @@ export const instructors: Instructor[] = [
     initials: "L",
     role: "Founder & Music Instructor",
     specialization: "Piano · Music Theory",
-    experience: "Higher Institute of Music (Helwan)",
+    experience: "Higher Institute of Music (Ain Shams)",
     bio: "Teaching Assistant at the Higher Institute of Music and founder of Volcano. Louloua blends rigorous classical training with a warm, modern approach that puts confidence first.",
     tags: ["Piano", "Theory", "Ear Training"],
     hue: 354,
@@ -434,7 +503,7 @@ export const timeline: TimelineItem[] = [
     year: "The Spark",
     title: "A vision takes shape",
     description:
-      "Founded by Louloua — a Teaching Assistant at the Higher Institute of Music (Helwan) — Volcano begins with a single belief: everyone deserves a world-class musical education.",
+      "Founded by Louloua — a Teaching Assistant at the Higher Institute of Music (Ain Shams) — Volcano begins with a single belief: everyone deserves a world-class musical education.",
   },
   {
     year: "The Studio",
@@ -463,10 +532,9 @@ export const timeline: TimelineItem[] = [
 ];
 
 export const stats: { value: string; label: string }[] = [
-  { value: "7", label: "Instruments taught" },
-  { value: "500+", label: "Lessons delivered" },
-  { value: "12+", label: "Expert instructors" },
-  { value: "4.9", label: "Average student rating" },
+  { value: "6", label: "Years of experience" },
+  { value: "1350+", label: "Students & counting" },
+  { value: "8", label: "Instruments mastered" },
 ];
 
 /* ------------------------------------------------------------------ */

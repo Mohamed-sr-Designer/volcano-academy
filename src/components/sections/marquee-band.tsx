@@ -7,11 +7,11 @@ const WORDS = [
   "Violin",
   "Drums",
   "Vocals",
-  "Music Theory",
   "Kids Music",
   "Performance",
   "Composition",
   "Ear Training",
+  "Rhythm",
 ];
 
 export function MarqueeBand() {

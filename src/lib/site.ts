@@ -36,7 +36,6 @@ export const mainNav: NavItem[] = [
   { title: "Home", href: "/" },
   { title: "Courses", href: "/courses" },
   { title: "Founder", href: "/founder" },
-  { title: "Pricing", href: "/pricing" },
   { title: "Contact", href: "/contact" },
 ];
 
@@ -54,7 +53,6 @@ export const footerNav: { heading: string; items: NavItem[] }[] = [
     heading: "Learn",
     items: [
       { title: "Courses", href: "/courses" },
-      { title: "Pricing", href: "/pricing" },
       { title: "Book a Lesson", href: "/booking" },
       { title: "Apply Now", href: "/apply" },
     ],

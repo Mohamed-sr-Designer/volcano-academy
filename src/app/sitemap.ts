@@ -11,7 +11,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/founder",
     "/instructors",
     "/gallery",
-    "/pricing",
     "/booking",
     "/apply",
     "/contact",

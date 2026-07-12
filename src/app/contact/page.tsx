@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Phone, Mail, MapPin, Clock, MessageCircle } from "lucide-react";
+import { Phone, Mail, Clock, MessageCircle } from "lucide-react";
 
 import { PageHero } from "@/components/shared/page-hero";
 import { ContactForm } from "@/components/forms/contact-form";
@@ -9,19 +9,14 @@ import { siteConfig } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Get in touch with Volcano Music Academy — call, email, WhatsApp or visit our Cairo studio. We'd love to hear from you.",
+    "Get in touch with Volcano Music Academy — call, email or WhatsApp us. We'd love to hear from you.",
 };
 
 export default function ContactPage() {
-  const mapSrc = `https://www.google.com/maps?q=${encodeURIComponent(
-    siteConfig.mapQuery
-  )}&output=embed`;
-
   const details = [
     { icon: Phone, label: "Call us", value: siteConfig.phone, href: siteConfig.phoneHref },
     { icon: Mail, label: "Email us", value: siteConfig.email, href: `mailto:${siteConfig.email}` },
     { icon: MessageCircle, label: "WhatsApp", value: siteConfig.whatsapp, href: siteConfig.whatsappHref },
-    { icon: MapPin, label: "Visit us", value: siteConfig.address, href: `https://www.google.com/maps?q=${encodeURIComponent(siteConfig.mapQuery)}` },
   ];
 
   return (
@@ -107,20 +102,6 @@ export default function ContactPage() {
             <div>
               <ContactForm />
             </div>
-          </div>
-
-          {/* Map */}
-          <div className="mt-10 overflow-hidden rounded-[2rem] border border-border shadow-soft">
-            <iframe
-              title="Volcano Academy location"
-              src={mapSrc}
-              width="100%"
-              height="420"
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              className="w-full grayscale-[0.2] contrast-[1.05]"
-              style={{ border: 0 }}
-            />
           </div>
         </div>
       </section>

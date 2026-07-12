@@ -1,0 +1,4 @@
+User-Agent: *
+Allow: /
+
+Sitemap: https://volcano-academy.com/sitemap.xml
